@@ -3,48 +3,10 @@
 import { useState } from "react";
 import React, { createContext, useReducer } from "react";
 
-const DummyExpenses = [
-  {
-    id: "1",
-    definition: "buy a phone",
-    price: 30,
-    date: new Date("2023-11-29"),
-  },
-  {
-    id: "2",
-    definition: "buy a phone",
-    price: 30,
-    date: new Date("2023-11-27"),
-  },
-  {
-    id: "3",
-    definition: "buy a comp",
-    price: 30,
-    date: new Date("2023-06-15"),
-  },
-  {
-    id: "4",
-    definition: "buy a new glass",
-    price: 30,
-    date: new Date("2023-08-12"),
-  },
-  {
-    id: "5",
-    definition: "buy new shoes",
-    price: 30,
-    date: new Date("2023-10-13"),
-  },
-  {
-    id: "6",
-    definition: "buy a new computer",
-    price: 30,
-    date: new Date("2023-12-02"),
-  },
-];
-
 export const ExpenseContext = createContext({
   expenses: [], //context is using those definition and data to render
   addExpense: ({ definition, price, date }) => {},
+  getExpenses: () => {},
   removeExpense: (id) => {},
   updateExpense: (id, { definition, price, date }) => {},
 });
@@ -57,6 +19,8 @@ function ReducerFunction(state, action) {
       const newExpense = { id: newId, ...action.payload }; //action payload is the data I too via paramather
       return [newExpense, ...state];
 
+    case "GET":
+      return action.payload; // returns data from firebase rest api
     case "REMOVE":
       const newArray = state.filter(
         (expenseItem) => expenseItem.id !== action.payload.id
@@ -78,12 +42,15 @@ function ReducerFunction(state, action) {
   }
 }
 const ExpensesContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(ReducerFunction, DummyExpenses);
+  const [state, dispatch] = useReducer(ReducerFunction, []);
   function addExpense(expenseData) {
     dispatch({ type: "ADD", payload: expenseData });
   }
   function removeExpense(id) {
     dispatch({ type: "REMOVE", payload: id });
+  }
+  function getExpenses(expenseData) {
+    dispatch({ type: "GET", payload: expenseData });
   }
 
   function updateExpense(id, expenseData) {
@@ -92,6 +59,7 @@ const ExpensesContextProvider = ({ children }) => {
 
   const value = {
     expenses: state,
+    getExpenses: getExpenses,
     addExpense: addExpense,
     removeExpense: removeExpense,
     updateExpense: updateExpense,

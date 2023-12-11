@@ -5,7 +5,6 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Colors } from "../components/Colors";
 import ListExpenses from "../components/ListExpenses";
-import { DATA } from "../data/dummyData";
 import { Searchbar } from "react-native-paper";
 import { useContext } from "react";
 import { ExpenseContext } from "../store/ExpensesContext";
@@ -25,10 +24,13 @@ const RecentExpenses = () => {
   });
 
   useEffect(() => {
+    //that func is important, useEffect func shouldn't return an async func itself
     const getExpenses = async () => {
       const response = await getAllExpenses();
-      console.log("REsult", response);
+      console.log("Result", response);
+      ExpenseCntxt.getExpenses(response);
     };
+
     getExpenses();
   }, []);
   const onChangeSearch = (query) => setSearchQuery(query);
