@@ -35,10 +35,7 @@ const ExpenseForm = ({
       date: new Date(inputValues.date),
       definition: inputValues.definition,
     };
-    console.log(
-      "handle submit is worked , new expense object values",
-      newExpenseObject
-    );
+    //console.log("handle submit is worked , new expense object values",newExpenseObject);
 
     const isPriceValid = !isNaN(inputValues.price) && inputValues.price > 0;
     const isDateValid = inputValues.date !== null || "invalid date";

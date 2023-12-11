@@ -7,7 +7,7 @@ import { Button, IconButton } from "react-native-paper";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { ExpenseContext, ExpensesContext } from "../store/ExpensesContext";
 import ExpenseForm from "../components/manageExpns/ExpenseForm";
-import { postExpense } from "../utils/Http.";
+import { deleteExpense, postExpense, updateExpense } from "../utils/Http.";
 
 const ManageExpense = () => {
   const route = useRoute();
@@ -28,13 +28,16 @@ const ManageExpense = () => {
     });
   }, [navigation]);
 
-  function handleUpdateAddFunctions(expenseObject) {
+  async function handleUpdateAddFunctions(expenseObject) {
     if (itemData == "new") {
-      postExpense(expenseObject);
-      ExpenseCntxt.addExpense(expenseObject);
+      const id = await postExpense(expenseObject); // !!returns promise value
+      console.log("the postExpense func id", id);
+
+      ExpenseCntxt.addExpense({ ...expenseObject, id: id }); //take id from firebase api !!
       navigation.navigate("AllExpenses");
     } else {
       ExpenseCntxt.updateExpense(itemData, expenseObject);
+      await updateExpense(itemData, expenseObject);
       navigation.navigate("AllExpenses");
     }
   }
@@ -42,6 +45,7 @@ const ManageExpense = () => {
   function DeleteExpense() {
     console.log("delete Expenses is worked");
     ExpenseCntxt.deleteExpense(itemData);
+    deleteExpense(itemData);
     navigation.navigate("AllExpenses");
   }
 

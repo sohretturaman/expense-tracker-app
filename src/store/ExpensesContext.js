@@ -15,12 +15,14 @@ function ReducerFunction(state, action) {
   // it takes two  paramathers as default
   switch (action.type) {
     case "ADD":
-      const newId = Math.random().toString() + new Date().getTime().toString();
-      const newExpense = { id: newId, ...action.payload }; //action payload is the data I too via paramather
-      return [newExpense, ...state];
+      // const newId = Math.random().toString() + new Date().getTime().toString();
+      // const newExpense = { id: newId, ...action.payload }; //action payload is the data I too via paramather
+      return [action.payload, ...state]; // no need to generate id anymore
 
     case "GET":
-      return action.payload; // returns data from firebase rest api
+      const expenseArray = action.payload.reverse();
+      return expenseArray; // returns data from firebase rest api
+
     case "REMOVE":
       const newArray = state.filter(
         (expenseItem) => expenseItem.id !== action.payload.id
@@ -43,9 +45,11 @@ function ReducerFunction(state, action) {
 }
 const ExpensesContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ReducerFunction, []);
+
   function addExpense(expenseData) {
     dispatch({ type: "ADD", payload: expenseData });
   }
+
   function removeExpense(id) {
     dispatch({ type: "REMOVE", payload: id });
   }
