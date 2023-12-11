@@ -4,7 +4,7 @@ function FormatDate(date) {
   var formatedDate = `${date?.getFullYear()}-${
     date?.getMonth() + 1
   }-${date?.getDate()}`;
-  console.log("formated date value : ", formatedDate);
+  //console.log("formated date value : ", formatedDate);
 
   return formatedDate;
 

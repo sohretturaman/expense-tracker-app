@@ -7,6 +7,7 @@ import { Button, IconButton } from "react-native-paper";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { ExpenseContext, ExpensesContext } from "../store/ExpensesContext";
 import ExpenseForm from "../components/manageExpns/ExpenseForm";
+import { postExpense } from "../utils/Http.";
 
 const ManageExpense = () => {
   const route = useRoute();
@@ -29,6 +30,7 @@ const ManageExpense = () => {
 
   function handleUpdateAddFunctions(expenseObject) {
     if (itemData == "new") {
+      postExpense(expenseObject);
       ExpenseCntxt.addExpense(expenseObject);
       navigation.navigate("AllExpenses");
     } else {

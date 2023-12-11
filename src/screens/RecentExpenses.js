@@ -1,7 +1,7 @@
 /** @format */
 
 import { StyleSheet, Text, View, ScrollView } from "react-native";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Colors } from "../components/Colors";
 import ListExpenses from "../components/ListExpenses";
@@ -10,6 +10,7 @@ import { Searchbar } from "react-native-paper";
 import { useContext } from "react";
 import { ExpenseContext } from "../store/ExpensesContext";
 import { RecentExpensesFunction } from "../utils/FormatDate";
+import { getAllExpenses } from "../utils/Http.";
 
 const RecentExpenses = () => {
   const navigation = useNavigation();
@@ -23,6 +24,13 @@ const RecentExpenses = () => {
     return expense.date >= dateToRetrun;
   });
 
+  useEffect(() => {
+    const getExpenses = async () => {
+      const response = await getAllExpenses();
+      console.log("REsult", response);
+    };
+    getExpenses();
+  }, []);
   const onChangeSearch = (query) => setSearchQuery(query);
   return (
     <View style={styles.continer}>

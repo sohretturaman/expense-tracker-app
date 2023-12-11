@@ -13,7 +13,7 @@ const ExpenseItem = ({ data }) => {
   const handeltemPress = () => {
     navigation.navigate("ManageExpense", { itemData: data.id });
   };
-  console.log("item date data!!", data?.date);
+  //console.log("item date data!!", data?.date);
 
   return (
     <View style={styles.itemWrapper}>
