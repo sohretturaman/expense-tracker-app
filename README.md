@@ -83,49 +83,7 @@ If you're having issues with Create React Native App, please make sure:
 
 If you've checked the documentation and currently open issues, please either [open a new GitHub issue](https://github.com/expo/create-react-native-app/issues/new) or ask a question on [Expo Community Discord](https://chat.expo.dev).
 
-## Contributing
 
-Refer to the [Contributing guide](https://github.com/expo/create-react-native-app/blob/main/CONTRIBUTING.md) for more information.
-
-### Attribution
-
-The examples feature was inspired by the `templates` system of [create-next-app](https://github.com/zeit/next.js/tree/canary/packages/create-next-app) by the [Vercel](https://vercel.com/) team.
-
-## Related
-
-CRNA is focused on being the fastest way to bootstrap a React Native app without worrying about the native platforms or bundlers required for developing and shipping apps. Other tools provide both an init script (which is slower) and a suite of other tools that can be used for interacting with the project. CRNA is meant to be used with any of the following tools:
-
-- [Expo CLI](https://docs.expo.dev/more/expo-cli/) by [Expo team](https://expo.dev)
-- [Ignite CLI](https://github.com/infinitered/ignite) by [Infinite Red](https://infinite.red/)
-- [React Native Community CLI](https://github.com/react-native-community/cli) by members of [the React Native community](https://github.com/orgs/react-native-community/people)
-
-<!-- Footer -->
-
-## Contributors ✨
-
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://twitter.com/baconbrix"><img src="https://avatars1.githubusercontent.com/u/9664363?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Evan Bacon</b></sub></a><br /><a href="https://github.com/expo/create-react-native-app/commits?author=EvanBacon" title="Code">💻</a> <a href="https://github.com/expo/create-react-native-app/commits?author=EvanBacon" title="Documentation">📖</a> <a href="#design-EvanBacon" title="Design">🎨</a> <a href="#maintenance-EvanBacon" title="Maintenance">🚧</a> <a href="https://github.com/expo/create-react-native-app/pulls?q=is%3Apr+reviewed-by%3AEvanBacon" title="Reviewed Pull Requests">👀</a></td>
-    <td align="center"><a href="https://expo.dev"><img src="https://avatars2.githubusercontent.com/u/90494?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Brent Vatne</b></sub></a><br /><a href="https://github.com/expo/create-react-native-app/commits?author=brentvatne" title="Code">💻</a> <a href="https://github.com/expo/create-react-native-app/commits?author=brentvatne" title="Documentation">📖</a> <a href="https://github.com/expo/create-react-native-app/pulls?q=is%3Apr+reviewed-by%3Abrentvatne" title="Reviewed Pull Requests">👀</a></td>
-    <td align="center"><a href="http://hamzah"><img src="https://avatars0.githubusercontent.com/u/26879042?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hamza Halilovic</b></sub></a><br /><a href="https://github.com/expo/create-react-native-app/commits?author=hamzahalilovic" title="Code">💻</a></td>
-    <td align="center"><a href="https://bycedric.com"><img src="https://avatars2.githubusercontent.com/u/1203991?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Cedric van Putten</b></sub></a><br /><a href="https://github.com/expo/create-react-native-app/commits?author=byCedric" title="Code">💻</a></td>
-    <td align="center"><a href="https://twitter.com/VilleImmonen"><img src="https://avatars3.githubusercontent.com/u/497214?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ville Immonen</b></sub></a><br /><a href="https://github.com/expo/create-react-native-app/commits?author=fson" title="Code">💻</a> <a href="https://github.com/expo/create-react-native-app/pulls?q=is%3Apr+reviewed-by%3Afson" title="Reviewed Pull Requests">👀</a></td>
-    <td align="center"><a href="https://github.com/friederbluemle"><img src="https://avatars0.githubusercontent.com/u/743291?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Frieder Bluemle</b></sub></a><br /><a href="https://github.com/expo/create-react-native-app/commits?author=friederbluemle" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/kbrandwijk"><img src="https://avatars.githubusercontent.com/u/852069?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kim Brandwijk</b></sub></a><br /><a href="https://github.com/expo/create-react-native-app/commits?author=kbrandwijk" title="Code">💻</a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://github.com/srkds"><img src="https://avatars.githubusercontent.com/u/61644078?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nirav</b></sub></a><br /><a href="https://github.com/expo/create-react-native-app/commits?author=srkds" title="Code">💻</a></td>
-  </tr>
-</table>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
