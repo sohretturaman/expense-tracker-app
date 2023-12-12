@@ -27,12 +27,12 @@ export async function getAllExpenses() {
   return expenses;
 }
 
-export function deleteExpense() {
-  axios.delete(BASE_URL + `/expenses/${id}.json`);
+export async function deleteExpense(id) {
+  await axios.delete(BASE_URL + `/expenses/${id}.json`);
 }
 
-export function updateExpense(expenseData) {
-  axios.put(BASE_URL + `/expenses/${id}.json`, expenseData);
+export async function updateExpense(id, expenseData) {
+  await axios.put(BASE_URL + `/expenses/${id}.json`, expenseData);
 }
 
 //sending http request are asynchronous tasks ,they don't complete immediately ,that's why get and post functions return promises

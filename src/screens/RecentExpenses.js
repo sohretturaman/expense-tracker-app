@@ -10,10 +10,14 @@ import { useContext } from "react";
 import { ExpenseContext } from "../store/ExpensesContext";
 import { RecentExpensesFunction } from "../utils/FormatDate";
 import { getAllExpenses } from "../utils/Http.";
+import LoadingOverlay from "../uı/LoadingOverlay";
+import ErrorOverlay from "../uı/ErrorOverlay";
 
 const RecentExpenses = () => {
   const navigation = useNavigation();
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [expError, setExpError] = useState("");
 
   const ExpenseCntxt = useContext(ExpenseContext);
 
@@ -26,14 +30,31 @@ const RecentExpenses = () => {
   useEffect(() => {
     //that func is important, useEffect func shouldn't return an async func itself
     const getExpenses = async () => {
-      const response = await getAllExpenses();
-      console.log("Result", response);
-      ExpenseCntxt.getExpenses(response);
+      setLoading(true); //use loading state in async func
+      try {
+        const response = await getAllExpenses();
+        console.log("Result from firestore data", response);
+        ExpenseCntxt.getExpenses(response);
+      } catch (error) {
+        setExpError("could not fetch expenses, please try agin later");
+      }
+      setLoading(false); //put loading staate false , at the and of the async func
     };
 
     getExpenses();
   }, []);
+
   const onChangeSearch = (query) => setSearchQuery(query);
+
+  if (loading) {
+    return <LoadingOverlay />;
+  }
+
+  if (expError && !loading) {
+    return (
+      <ErrorOverlay message={expError} onPressError={() => setExpError("")} />
+    );
+  }
   return (
     <View style={styles.continer}>
       <View

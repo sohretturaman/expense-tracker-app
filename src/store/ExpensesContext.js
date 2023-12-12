@@ -24,10 +24,7 @@ function ReducerFunction(state, action) {
       return expenseArray; // returns data from firebase rest api
 
     case "REMOVE":
-      const newArray = state.filter(
-        (expenseItem) => expenseItem.id !== action.payload.id
-      );
-      return [...newArray];
+      return state.filter((expense) => expense.id !== action.payload);
 
     case "UPDATE":
       const updatableExpenseIndex = state.findIndex(
@@ -74,6 +71,9 @@ const ExpensesContextProvider = ({ children }) => {
 };
 
 export default ExpensesContextProvider;
+
+//in remove function   =>  // here should be action.payload ,
+//beacuse we dont need to react any item except of id , we have only id data as paramther
 
 // a reducer function has been created  without reducer fuction at first
 {

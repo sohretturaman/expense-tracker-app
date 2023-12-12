@@ -8,12 +8,15 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { ExpenseContext, ExpensesContext } from "../store/ExpensesContext";
 import ExpenseForm from "../components/manageExpns/ExpenseForm";
 import { deleteExpense, postExpense, updateExpense } from "../utils/Http.";
+import LoadingOverlay from "../uı/LoadingOverlay";
+import ErrorOverlay from "../uı/ErrorOverlay";
 
 const ManageExpense = () => {
   const route = useRoute();
   const navigation = useNavigation();
+  const [loading, setLoading] = useState(false);
+  const [expError, setExpError] = useState("");
   const { itemData } = route?.params;
-  //console.log('item data ', itemData); // have update itemdata value while add a new item
 
   const ExpenseCntxt = useContext(ExpenseContext);
 
@@ -29,23 +32,37 @@ const ManageExpense = () => {
   }, [navigation]);
 
   async function handleUpdateAddFunctions(expenseObject) {
-    if (itemData == "new") {
-      const id = await postExpense(expenseObject); // !!returns promise value
-      console.log("the postExpense func id", id);
+    setLoading(true);
 
-      ExpenseCntxt.addExpense({ ...expenseObject, id: id }); //take id from firebase api !!
-      navigation.navigate("AllExpenses");
-    } else {
-      ExpenseCntxt.updateExpense(itemData, expenseObject);
-      await updateExpense(itemData, expenseObject);
-      navigation.navigate("AllExpenses");
+    try {
+      if (itemData == "new") {
+        const postId = await postExpense(expenseObject); // !!returns promise value
+
+        ExpenseCntxt.addExpense({ ...expenseObject, id: postId }); //take id from firebase api !!
+        navigation.navigate("AllExpenses");
+      } else {
+        ExpenseCntxt.updateExpense(itemData, expenseObject);
+        await updateExpense(itemData, expenseObject);
+      }
+    } catch (error) {
+      setLoading(false);
+      setExpError("could not update or add expense,", error.message);
     }
+
+    navigation.navigate("AllExpenses");
   }
 
-  function DeleteExpense() {
-    console.log("delete Expenses is worked");
-    ExpenseCntxt.deleteExpense(itemData);
-    deleteExpense(itemData);
+  async function DeleteExpense() {
+    setLoading(true); //at the end of the function, it navigates to another pahe so no need to set loading to false
+    try {
+      console.log("delete func is worked");
+
+      ExpenseCntxt.removeExpense(itemData);
+      await deleteExpense(itemData);
+    } catch (error) {
+      setExpError("could not delete the expense, please try agin later");
+    }
+
     navigation.navigate("AllExpenses");
   }
 
@@ -53,6 +70,14 @@ const ManageExpense = () => {
     navigation.goBack();
   };
 
+  if (loading) {
+    return <LoadingOverlay />;
+  }
+  if (expError && !loading) {
+    return (
+      <ErrorOverlay message={expError} onPressError={() => setExpError("")} />
+    );
+  }
   return (
     <View style={styles.container}>
       <ExpenseForm

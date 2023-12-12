@@ -9,7 +9,7 @@ import { ExpenseContext } from "../store/ExpensesContext";
 
 const AllExpenses = () => {
   const ExpensesCtxt = useContext(ExpenseContext);
-  console.log("expenses context data ", ExpensesCtxt.expenses);
+  console.log(" context data all expenses ", ExpensesCtxt.expenses);
 
   return (
     <SafeAreaView style={styles.continer}>
