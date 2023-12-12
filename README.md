@@ -1,5 +1,10 @@
 <!-- Title -->
-
+<p align="center">
+    <h1 align="center">React Native Expense Tricker App with Expo</h1>
+    https://github.com/sohretturaman/expense-tracker-app/assets/81382575/f25ef4e6-25e0-47f3-9bc4-e30fc56eebf6
+ 
+  
+</p>
 <p align="center">
   <a href="https://github.com/expo/examples">
     <img alt="create-react-native-app" src="./.gh-assets/banner.svg">
